@@ -994,8 +994,7 @@ void zmq::stream_engine_t::error (error_reason_t reason)
     socket->event_disconnected (endpoint, (int) s);
     session->flush ();
     session->engine_error (reason);
-    unplug ();
-    delete this;
+    terminate ();
 }
 
 void zmq::stream_engine_t::set_handshake_timer ()
