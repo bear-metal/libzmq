@@ -148,7 +148,7 @@ zmq::stream_engine_t::~stream_engine_t ()
         int rc = closesocket (s);
         wsa_assert (rc != SOCKET_ERROR);
 #else
-        int rc = close (s);
+        int rc = ::close (s);
 #if defined(__FreeBSD_kernel__) || defined (__FreeBSD__)
         // FreeBSD may return ECONNRESET on close() under load but this is not
         // an error.
