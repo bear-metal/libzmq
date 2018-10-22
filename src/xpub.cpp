@@ -222,6 +222,8 @@ void zmq::xpub_t::xpipe_terminated (pipe_t *pipe_)
         //  care of by the manual call above. subscriptions is the real mtrie,
         //  so the pipe must be removed from there or it will be left over.
         subscriptions.rm (pipe_, stub, NULL, false);
+        //  Remove pending pipes by value
+        pending_pipes.erase(std::remove(pending_pipes.begin(), pending_pipes.end(), pipe_), pending_pipes.end());
     }
     else
     {
